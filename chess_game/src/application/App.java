@@ -4,6 +4,7 @@ import java.util.Locale;
 import java.util.Scanner;
 
 import boardgame.Position;
+import chess.ChessMatch;
 import boardgame.Piece;
 import boardgame.Board;
 
@@ -12,7 +13,8 @@ public class App {
         Locale.setDefault(Locale.US);
         Scanner sc = new Scanner(System.in);
 
-        Board board = new Board(8, 8);
+        ChessMatch chessMatch = new ChessMatch();
+        UI.printBoard(chessMatch.getPieces());
 
         sc.close();
     }
