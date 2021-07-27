@@ -70,13 +70,24 @@ public class UI {
         printCapturedPieces(captured);
         System.out.println();
         System.out.println("Turn: " + chessMatch.getTurn());
-        System.out.println(chessMatch.getCurrentPlayer() + "'s turn!");
-
-        if (chessMatch.getCheck()) {
+        if (!chessMatch.getCheckMate()) {
+            System.out.println(chessMatch.getCurrentPlayer() + "'s turn!");
+            if (chessMatch.getCheck()) {
+                System.out.print(ANSI_RED);
+                System.out.println("**CHECK**");
+                System.out.print(ANSI_RESET);
+            }
+        }
+        else {
             System.out.print(ANSI_RED);
-            System.out.println("**CHECK**");
+            System.out.println("**CHECKMATE!**");
+            System.out.print(ANSI_RESET);
+            System.out.println();
+            System.out.print(ANSI_GREEN);
+            System.out.println("**Winner: " + chessMatch.getCurrentPlayer() + "**");
             System.out.print(ANSI_RESET);
         }
+        
     }
 
     private static void printPiece(ChessPiece piece, boolean background) {
