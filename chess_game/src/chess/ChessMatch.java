@@ -10,11 +10,23 @@ import chess.chessExceptions.ChessException;
 public class ChessMatch {
 
     private Board board;
+    private int turn;
+    private Colour currentPlayer;
     
 
     public ChessMatch() {
         board = new Board(8, 8);
+        turn = 1;
+        currentPlayer = Colour.WHITE;
         initialSetup();
+    }
+
+    public int getTurn() {
+        return this.turn;
+    }
+
+    public Colour getCurrentPlayer() {
+        return this.currentPlayer;
     }
 
     public ChessPiece[][] getPieces() {
@@ -60,12 +72,16 @@ public class ChessMatch {
         validateSourcePosition(source);
         validateTargetPosition(source, target);
         Piece capturedPiece = makeMove(source, target);
+        nextTurn();
         return (ChessPiece) capturedPiece;
     }
 
     private void validateSourcePosition(Position position) {
         if (!board.thereIsAPiece(position)) {
             throw new ChessException("There is no piece on source position!");
+        }
+        if (currentPlayer != ((ChessPiece)board.piece(position)).getColour()) {
+            throw new ChessException("The chosen piece is not yours!");
         }
         if (!board.piece(position).isThereAnyPossibleMove()) {
             throw new ChessException("There are no possible moves for the chosen piece!");
@@ -83,6 +99,11 @@ public class ChessMatch {
         Piece capturedPiece = board.removePiece(target);
         board.placePiece(p, target);
         return capturedPiece;
+    }
+
+    private void nextTurn() {
+        turn++;
+        currentPlayer = (currentPlayer == Colour.WHITE) ? Colour.BLACK : Colour.WHITE;
     }
     
 }
