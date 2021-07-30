@@ -5,12 +5,12 @@ import boardgame.Position;
 import chess.ChessPiece;
 import chess.Colour;
 
-public class King extends ChessPiece {
+public class Knight extends ChessPiece {
 
-    public King(Board board, Colour colour) {
+
+    public Knight(Board board, Colour colour) {
         super(board, colour);
     }
-
 
     @Override
     public boolean[][] possibleMoves() {
@@ -18,43 +18,43 @@ public class King extends ChessPiece {
 
         Position p = new Position(0, 0);
 
-        // above
-        p.setValues(position.getRow() - 1, position.getColumn());
+        // front left l
+        p.setValues(position.getRow() - 1, position.getColumn() - 2);
         if (getBoard().positionExists(p) && canMove(p)) {
             mat[p.getRow()][p.getColumn()] = true;
         }
-        // below
-        p.setValues(position.getRow() + 1, position.getColumn());
+        // sideways left front l
+        p.setValues(position.getRow() -2, position.getColumn() - 1);
         if (getBoard().positionExists(p) && canMove(p)) {
             mat[p.getRow()][p.getColumn()] = true;
         }
-        // left
-        p.setValues(position.getRow(), position.getColumn() - 1);
+        // front right l
+        p.setValues(position.getRow() - 2, position.getColumn() + 1);
         if (getBoard().positionExists(p) && canMove(p)) {
             mat[p.getRow()][p.getColumn()] = true;
         }
-        // right
-        p.setValues(position.getRow(), position.getColumn() + 1);
+        // sideways right front l
+        p.setValues(position.getRow() - 1, position.getColumn() + 2);
         if (getBoard().positionExists(p) && canMove(p)) {
             mat[p.getRow()][p.getColumn()] = true;
         }
-        // northwest
-        p.setValues(position.getRow() - 1, position.getColumn() - 1);
+        // back left l
+        p.setValues(position.getRow() + 1, position.getColumn() + 2);
         if (getBoard().positionExists(p) && canMove(p)) {
             mat[p.getRow()][p.getColumn()] = true;
         }
-        // northeast
-        p.setValues(position.getRow() - 1, position.getColumn() + 1);
+        // sideways left back l
+        p.setValues(position.getRow() + 2, position.getColumn() + 1);
         if (getBoard().positionExists(p) && canMove(p)) {
             mat[p.getRow()][p.getColumn()] = true;
         }
-        // southwest
-        p.setValues(position.getRow() + 1, position.getColumn() - 1);
+        // back right l
+        p.setValues(position.getRow() + 2, position.getColumn() - 1);
         if (getBoard().positionExists(p) && canMove(p)) {
             mat[p.getRow()][p.getColumn()] = true;
         }
-        // southeast
-        p.setValues(position.getRow() + 1, position.getColumn() + 1);
+        // sideways back right l
+        p.setValues(position.getRow() + 1, position.getColumn() -2);
         if (getBoard().positionExists(p) && canMove(p)) {
             mat[p.getRow()][p.getColumn()] = true;
         }
@@ -66,9 +66,8 @@ public class King extends ChessPiece {
         return p == null || p.getColour() != getColour();
     }
 
-    @Override
     public String toString() {
-        return "♔";
+        return "♘";
     }
     
 }
