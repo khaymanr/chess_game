@@ -96,7 +96,7 @@ public class UI {
 
     private static void printPiece(ChessPiece piece, boolean background) {
         if (background) {
-            if (background && piece != null) {
+            if (piece != null) {
                 System.out.print(ANSI_CYAN + piece.toString() + ANSI_RESET);
             }
             else {
