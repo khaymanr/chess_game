@@ -1,5 +1,6 @@
 package application;
 
+
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.List;
@@ -10,6 +11,7 @@ import chess.ChessMatch;
 import chess.ChessPiece;
 import chess.ChessPosition;
 import chess.chessExceptions.ChessException;
+
 
 public class App {
     public static void main(String[] args) throws Exception {
@@ -40,7 +42,17 @@ public class App {
                 if (capturedPiece != null) {
                     captured.add(capturedPiece);
                 }
+                if (chessMatch.getPromoted() != null) {
+                    System.out.print("Enter piece for promotion (Bishop/Knight/Queen/Rook) ");
+                    String type = sc.nextLine();
+                    while (!type.equals("Bishop") && !type.equals("Knight") && !type.equals("Queen") && !type.equals("Rook")) {
+                        System.out.print("Invalid value! Enter piece for promotion (Bishop/Knight/Queen/Rook)");
+                        type = sc.nextLine();
+                    }
+                    chessMatch.replacePromotedPiece(type);
+                }
             }
+
             catch (ChessException e) {
                 System.out.println(e.getMessage());
                 sc.nextLine();
@@ -49,6 +61,7 @@ public class App {
                 System.out.println(e.getMessage());
                 sc.nextLine();
             }
+
         }
 
         UI.clearScreen();
